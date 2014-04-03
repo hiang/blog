@@ -1,2 +1,2 @@
-Assignment 1, blog web app from Coursera Web Architecture
+Assignment 1, Blog web app from Coursera Web Architecture
 
