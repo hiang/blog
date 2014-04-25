@@ -10,5 +10,29 @@
   <%= @post.body %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<!--Comments that belong to the current Post-->
+<h2>Comments</h2>
+<div id='comments'>
+    <% @post.comments.each do |comment|%>  <!-- @post.comments returns array -->
+        <%= div_for comment do%>
+        <p>
+            <strong>Posted <%= time_ago_in_words(comment.created_at)%></strong><br />
+            <%= h(comment.body)%>
+        </p>
+       
+        <%end%>
+    <%end%>
+</div>
+
+
+<%= form_for([@post, Comment.new]) do |f| %>
+    <p><%= f.label :body, "New Comment" %> </br/>
+        <%= f.text_area :body %>
+    </p>
+    <p><%= f.submit "Add Comment" %></p>
+<%end%>
+
+<!--edit_post is the prefix in the rake routes which is the route for viewing the edit 
+page. _path is the method for identify the route of a particular webpage. -->
+<%= link_to 'Edit', edit_post_path(@post) %> |  
 <%= link_to 'Back', posts_path %>
