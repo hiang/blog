@@ -33,6 +33,7 @@ class CommentsController < ApplicationController
         #Redirect to the current post/:id page 
         format.html { redirect_to @post, notice: 'Comment was successfully created.'}   
         format.json { render action: 'show', status: :created, location: @comment }
+        format.js #call create.js.erb
       else
         format.html { render action: 'new' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }

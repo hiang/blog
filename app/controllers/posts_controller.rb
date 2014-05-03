@@ -30,7 +30,8 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
-      else
+      else 
+        #if the content of the form cannot be saved 
         format.html { render action: 'new' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
@@ -72,6 +73,7 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :body)
     end
     
+    #This is how to authenticate as an admin
     def authenticate
       authenticate_or_request_with_http_basic do |name, password|
         name == "admin" && password == "secret"
